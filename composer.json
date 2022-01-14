@@ -10,7 +10,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "Asadbekinha\\Octo-Payment\\": "src/"
+            "Asadbekinha\\OctoPayment\\": "src/"
         }
     },
     "minimum-stability": "dev",
