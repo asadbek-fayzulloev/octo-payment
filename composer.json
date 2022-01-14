@@ -1,0 +1,19 @@
+{
+    "name": "asadbek/octo-payment",
+    "description": "Octo Payment System",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Asadbekinha",
+            "email": "fayzulloevasadbek@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Asadbekinha\\Octo-Payment\\": "src/"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {}
+}
