@@ -2,7 +2,7 @@
 
 namespace Asadbekinha\OctoPayment;
 
-class PaymentGateway
+class Response
 {
 
 }
