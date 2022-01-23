@@ -26,6 +26,32 @@ class OctoApplication
     /**
      * Authorizes session and handles requests.
      */
+    public function pay($order_id)
+    {
+
+        $prepareData = $this->preparePayment($order_id);
+
+        if ($prepareData && ($order_id == $prepareData["order_id"])) {
+            $booking = $this->findBookingById($order_id);
+            $user = $this->findUserById($booking["user_id"]);
+            return redirect()->to($prepareData["octo_pay_url"]);
+        }
+        return false;
+    }
+    public function verify($shop_transaction_id){
+        $prepareData = $this->preparePayment($shop_transaction_id);
+        $bookingsObject = $this->findBookingById($shop_transaction_id);
+        if($prepareData["status"] == "succeeded" && $prepareData["shop_transaction_id"] == $shop_transaction_id ){
+            $cashback = new Cashback();
+            if($bookingsObject["paid"] == null){
+                $cashback->giveCashback($bookingsObject["user_id"], $bookingsObject["price"]);
+            }
+            $this->updateStatus($shop_transaction_id);
+            $this->update_by_id($shop_transaction_id, ["status" => "confirmed"]);
+
+        }
+        return redirect()->route('site.profile.bookings.show', ["booking" => $shop_transaction_id]);
+    }
     public function run()
     {
         try {
